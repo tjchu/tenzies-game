@@ -7,14 +7,16 @@ import {nanoid} from "nanoid"
 /*
 TODO features:
 - CSS: put real dots on the dice.
-- Track the time it took to win
-- Save your best time to localStorage
+- Track the time it took to win (start button, empty dice buttons)
+- Save your previous 5 games (rolls and time) to localStorage and display it underneath
 */
 
 function App() {
   const diceAmount = 10;
   const [dice, setDice] = React.useState(allNewDice());
   const [rolls, setRolls] = React.useState(0);
+  //const [started, setStarted] = React.useState(false);
+  //const [rollButtonText, setRollButtonText] = React.useState("Start");
   const [tenzies, setTenzies] = React.useState(false);
 
   React.useEffect(() => {
@@ -46,9 +48,18 @@ function App() {
   }
 
   function rollDice() {
+    /*
+    if (!started) {
+      setStarted(true);
+      setRollButtonText("Start");
+    }
+    */
+
     if (tenzies) {
       setDice(allNewDice());
       setRolls(0);
+      //setRollButtonText("New Game");
+      //setStarted(false);
       setTenzies(false);
     }
 
@@ -57,6 +68,8 @@ function App() {
       setDice(
         prevDice => prevDice.map(die => !die.isHeld ? {...die, value: getRandomNum()} : die)
       );
+      //setRollButtonText("Roll");
+      //setStarted(true);
     }
   }
 
@@ -73,7 +86,14 @@ function App() {
     <main>
       {tenzies && <Confetti/>}
       <h1 className="title">Tenzies</h1>
-      <p className="instructions">{tenzies ? `Congratulations! It took you ${rolls} rolls to win.` : "Roll until all dice are the same. Click each die to freeze it at its current value between rolls."}</p>
+      <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+      <div>
+        <b>Number of rolls: </b>{rolls}
+        <br />
+        <br />
+        <b>Timer: </b>
+        WIP
+      </div>
       <div className="dice-container">
         {diceElements}
       </div>
