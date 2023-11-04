@@ -13,7 +13,7 @@ function Die(props) {
 	return (
 		<button className="die" style={styles} onClick={handleClick}>
 			<div className="die-value">
-				{props.empty ?  "" : props.value}
+				{props.isEmpty ?  "" : props.value}
 			</div>
 		</button>
 	);

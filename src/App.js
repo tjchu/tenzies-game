@@ -15,8 +15,7 @@ function App() {
   const diceAmount = 10;
   const [dice, setDice] = React.useState(allNewDice());
   const [rolls, setRolls] = React.useState(0);
-  //const [started, setStarted] = React.useState(false);
-  //const [rollButtonText, setRollButtonText] = React.useState("Start");
+  const [start, setStart] = React.useState(false);
   const [tenzies, setTenzies] = React.useState(false);
 
   React.useEffect(() => {
@@ -35,6 +34,10 @@ function App() {
     return Math.floor(Math.random() * (7 - 1) + 1);
   }
 
+  function startGame() {
+    setStart(true);
+  }
+
   function allNewDice() {
     let newDice = [];
     for (let i = 0; i < diceAmount; i++) {
@@ -48,18 +51,10 @@ function App() {
   }
 
   function rollDice() {
-    /*
-    if (!started) {
-      setStarted(true);
-      setRollButtonText("Start");
-    }
-    */
-
     if (tenzies) {
       setDice(allNewDice());
       setRolls(0);
-      //setRollButtonText("New Game");
-      //setStarted(false);
+      setStart(false);
       setTenzies(false);
     }
 
@@ -68,19 +63,17 @@ function App() {
       setDice(
         prevDice => prevDice.map(die => !die.isHeld ? {...die, value: getRandomNum()} : die)
       );
-      //setRollButtonText("Roll");
-      //setStarted(true);
     }
   }
 
   function holdDice(id) {
-    if (!tenzies)
+    if (!tenzies && start)
       setDice(
         prevDice => prevDice.map(die => die.id === id ? {...die, isHeld: !die.isHeld} : die)
       );
   }
 
-  const diceElements = dice.map(die => <Die key={die.id} value={die.value} id={die.id} isHeld={die.isHeld} holdFunc={holdDice} />);
+  const diceElements = dice.map(die => <Die key={die.id} value={die.value} id={die.id} isHeld={die.isHeld} isEmpty={!start} holdFunc={holdDice} />);
 
   return (
     <main>
@@ -98,9 +91,16 @@ function App() {
         {diceElements}
       </div>
 
-      <button className="roll-button" onClick={rollDice}>
-        {tenzies ? "New Game" : "Roll"}
-      </button>
+      {start ? (
+          <button className="roll-button" onClick={rollDice}>
+            {tenzies ? "New Game" : "Roll"}
+          </button>
+        ) : (
+          <button className="roll-button" onClick={startGame}>
+            Start
+          </button>
+        )
+      }
     </main>
   );
 }
