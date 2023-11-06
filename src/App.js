@@ -15,6 +15,8 @@ function App() {
   const diceAmount = 10;
   const [dice, setDice] = React.useState(allNewDice());
   const [rolls, setRolls] = React.useState(0);
+  const [timer, setTimer] = React.useState(0);
+  const [intervalId, setIntervalId] = React.useState(null);
   const [start, setStart] = React.useState(false);
   const [tenzies, setTenzies] = React.useState(false);
 
@@ -24,11 +26,12 @@ function App() {
       const allSameVal = dice.every(die => die.value === dieVal);
       if (allHeld && allSameVal){
         setTenzies(true);
+        clearInterval(intervalId);
       }
       else {
         setTenzies(false);
       }
-  }, [dice])
+  }, [dice, timer, intervalId])
 
   function getRandomNum() {
     return Math.floor(Math.random() * (7 - 1) + 1);
@@ -36,6 +39,10 @@ function App() {
 
   function startGame() {
     setStart(true);
+    const id = setInterval(() => {
+      setTimer((timer) => timer + 1);
+    }, 1000);
+    setIntervalId(id);
   }
 
   function allNewDice() {
@@ -54,6 +61,7 @@ function App() {
     if (tenzies) {
       setDice(allNewDice());
       setRolls(0);
+      setTimer(0);
       setStart(false);
       setTenzies(false);
     }
@@ -85,7 +93,7 @@ function App() {
         <br />
         <br />
         <b>Timer: </b>
-        WIP
+        {timer}s
       </div>
       <div className="dice-container">
         {diceElements}
