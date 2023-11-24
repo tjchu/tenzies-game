@@ -16,7 +16,7 @@ function Die(props) {
 	const pips = []
 
 	for (let i = 0; i < props.value; i++) {
-		pips.push(<div key={nanoid()} className="pip"></div>);
+		pips.push(<div key={nanoid()} className="dot"></div>);
 	}
 
 	return (

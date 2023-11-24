@@ -63,27 +63,27 @@ main {
         "d . b";
 }
 
-.pip:nth-child(2) {
+.dot:nth-child(2) {
     grid-area: b;
 }
 
-.pip:nth-child(3) {
+.dot:nth-child(3) {
     grid-area: c;
 }
 
-.pip:nth-child(4) {
+.dot:nth-child(4) {
     grid-area: d;
 }
 
-.pip:nth-child(5) {
+.dot:nth-child(5) {
     grid-area: e;
 }
 
-.pip:nth-child(6) {
+.dot:nth-child(6) {
     grid-area: f;
 }
 
-.pip:nth-child(odd):last-child {
+.dot:nth-child(odd):last-child {
     grid-area: g;
 }
 
@@ -96,7 +96,7 @@ main {
 */
 
 
-.pip {
+.dot {
     display: block;
     align-self: center;
     justify-self: center;
