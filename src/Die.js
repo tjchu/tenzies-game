@@ -19,10 +19,4 @@ function Die(props) {
 	);
 }
 
-/*
-			<div className="die-value">
-				{props.isEmpty ?  "" : props.value}
-			</div>
-*/
-
 export default Die;
