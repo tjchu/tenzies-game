@@ -6,7 +6,6 @@ import {nanoid} from "nanoid"
 
 /*
 TODO features:
-- CSS: put real dots on the dice.
 - Save your previous 5 games (rolls and time) to localStorage and display it underneath
 */
 
