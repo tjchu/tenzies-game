@@ -12,10 +12,8 @@ function Die(props) {
 
 	return (
 		<button className="die" style={styles} onClick={handleClick}>
-			<div class="face">
-			    <span className="pip">.</span>
-			    <span className="pip">.</span>
-			    <span className="pip">.</span>
+			<div className="die-value">
+				{props.isEmpty ?  "" : props.value}
 			</div>
 		</button>
 	);

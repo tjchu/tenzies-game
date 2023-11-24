@@ -59,11 +59,11 @@ main {
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
-
+/*
 .pip {
     background-color: black;
     border-radius: 50%;
-}
+}*/
 
 .roll-button {
   width: 92.16px;
