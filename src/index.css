@@ -57,13 +57,55 @@ main {
 
 .face {
     display: grid;
-    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    grid-template-areas:
+        "a . c"
+        "e g f"
+        "d . b";
 }
+
+.dot:nth-child(2) {
+    grid-area: b;
+}
+
+.dot:nth-child(3) {
+    grid-area: c;
+}
+
+.dot:nth-child(4) {
+    grid-area: d;
+}
+
+.dot:nth-child(5) {
+    grid-area: e;
+}
+
+.dot:nth-child(6) {
+    grid-area: f;
+}
+
+.dot:nth-child(odd):last-child {
+    grid-area: g;
+}
+
 /*
-.pip {
-    background-color: black;
+.face {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+*/
+
+
+.dot {
+    display: block;
+    align-self: center;
+    justify-self: center;
+    width: 8px;
+    height: 8px;
+    background-color: #000;
     border-radius: 50%;
-}*/
+    margin: 1px;
+}
 
 .roll-button {
   width: 92.16px;
